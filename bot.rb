@@ -13,7 +13,7 @@ bot = Cinch::Bot.new do
     c.server = config::server
     c.channels = config::channels.map{ |x| "#" + x}
     c.plugins.prefix = config::prefix
-    c.plugins.plugins = [Reader, Saver]
+    c.plugins.plugins = [Reader, Saver, Getter]
   end
 end
 

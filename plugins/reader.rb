@@ -9,11 +9,15 @@ class Reader
   def execute(msg, query)
     words = query.split(/\W+/)
     words.each{ |x| 
-      unless get_user(x).nil?
+      if is_registered(x)
         $redis.lpush "msg_#{msg.user.nick}", "#{query}"
         msg.reply "added for #{x}"
       end
     }
+  end
+
+  def is_registered(nick)
+    $redis.sismember "registered_users", nick
   end
 
   def get_user(nick)
@@ -32,6 +36,7 @@ class Saver
 
   def execute(msg)
     $redis.hset "users", "#{msg.user.nick}", "y"
+    $redis.sadd "registered_users", msg.user.nick
     msg.reply "#{msg.user.nick}, successfully added"
   end
 end
