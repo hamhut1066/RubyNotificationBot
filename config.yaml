@@ -1,3 +1,4 @@
 server: "localhost"
 channels: ["testbot", "test"]
 base_dir: '/home/moredhel/documents/ruby/myCinch'
+prefix: ''
