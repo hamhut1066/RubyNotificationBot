@@ -1,4 +1,5 @@
 require 'cinch'
+require 'net/http'
 
 
 class Reader
@@ -7,10 +8,14 @@ class Reader
   match /(.*)/i
 
   def execute(msg, query)
+    uri = URI("http://notifications.aoeu.me/1/api/push")
+    req = Net::HTTP::Post.new(uri)
     words = query.split(/\W+/)
     words.each{ |x| 
       if is_registered(x)
-        $redis.lpush "msg_#{msg.user.nick}", "#{query}"
+        # add code here to push to remote server
+        req.set_form_data('name' => msg.user.nick, 'msg' => query)
+        #$redis.lpush "msg_#{msg.user.nick}", "#{query}"
         msg.reply "added for #{x}"
       end
     }
