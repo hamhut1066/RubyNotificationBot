@@ -1,21 +1,21 @@
 require 'cinch'
-require 'net/http'
+require 'httpsimple'
 
 
 class Reader
   include Cinch::Plugin
 
+
   match /(.*)/i
 
   def execute(msg, query)
-    uri = URI("http://notifications.aoeu.me/1/api/push")
-    req = Net::HTTP::Post.new(uri)
     words = query.split(/\W+/)
     words.each{ |x| 
       if is_registered(x)
         # add code here to push to remote server
-        req.set_form_data('name' => msg.user.nick, 'msg' => query)
-        #$redis.lpush "msg_#{msg.user.nick}", "#{query}"
+        response = HttpSimple.post "http://notifications.aoeu.me/1/api/push", :name => msg.user.nick, :msg => query
+        puts response
+        # $redis.lpush "msg_#{msg.user.nick}", "#{query}"
         msg.reply "added for #{x}"
       end
     }
