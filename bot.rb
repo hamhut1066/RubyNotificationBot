@@ -1,5 +1,3 @@
-#!/usr/bin/env ruby
-
 require 'cinch'
 require 'redis'
 require_relative 'config'
