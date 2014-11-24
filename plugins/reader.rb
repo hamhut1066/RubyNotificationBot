@@ -8,7 +8,7 @@ class Reader
 
   def execute(msg, query)
     words = query.split(/\W+/)
-    words.each{ |x| 
+    words.each do |x| 
       if is_registered(x)
         # add code here to push to remote server
         response = HttpSimple.post "http://notifications.aoeu.me/1/api/push", :name => msg.user.nick, :msg => query
@@ -16,7 +16,7 @@ class Reader
         # $redis.lpush "msg_#{msg.user.nick}", "#{query}"
         msg.reply "added for #{x}"
       end
-    }
+    end
   end
 
   def is_registered(nick)
