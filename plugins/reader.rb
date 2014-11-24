@@ -11,7 +11,8 @@ class Reader
     words.each do |x| 
       if is_registered(x)
         # add code here to push to remote server
-        response = HttpSimple.post "http://notifications.aoeu.me/1/api/push", :name => msg.user.nick, :msg => query
+        response = HttpSimple.post("http://notifications.aoeu.me/1/api/push",
+                                   :name => msg.user.nick, :msg => query)
         puts response
         # $redis.lpush "msg_#{msg.user.nick}", "#{query}"
         msg.reply "added for #{x}"
