@@ -2,7 +2,9 @@ require 'cinch'
 require 'redis'
 
 require_relative 'config'
-require_relative 'plugins/reader'
+Dir['plugins/**'].each do |d|
+  require_relative d
+end
 
 $redis = Redis.new
 
