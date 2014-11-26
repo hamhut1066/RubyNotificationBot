@@ -3,7 +3,7 @@ require 'cinch'
 class Getter
   include Cinch::Plugin
 
-  match %r{.last}i
+  match /\.last/
 
   def execute(msg)
     begin

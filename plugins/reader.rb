@@ -12,8 +12,7 @@ class Reader
       if is_registered(x)
         # add code here to push to remote server
         response = HttpSimple.post("http://notifications.aoeu.me/1/api/push",
-                                   :name => x, :msg => query)
-        msg.reply "added for #{x}"
+                                   :name => x, :msg => query, :token => 'hi')
       end
     end
   end

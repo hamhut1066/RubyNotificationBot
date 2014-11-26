@@ -3,7 +3,7 @@ require 'cinch'
 class Saver
   include Cinch::Plugin
 
-  match %r{.save}
+  match /^\.save$/
 
   def execute(msg)
     $redis.hset "users", "#{msg.user.nick}", "y"
