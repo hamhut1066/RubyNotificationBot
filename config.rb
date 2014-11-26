@@ -6,4 +6,7 @@ module BotConfig
   SERVER = config['server']
   CHANNELS = config['channels']
   PREFIX = config['prefix']
+  PORT  = config['port']
+  NICK  = config['nick']
+  PASSWORD  = config['password']
 end
