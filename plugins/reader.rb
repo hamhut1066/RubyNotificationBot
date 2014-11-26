@@ -14,7 +14,7 @@ class Reader
         response = HttpSimple.post("http://notifications.aoeu.me/1/api/push",
                                    :name => x, 
                                    :msg => query,
-                                   :nick => msg.user.nick
+                                   :nick => msg.user.nick,
                                    :token => 'hi')
       end
     end
